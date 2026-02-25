@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farid Hosseini – ML Engineer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --evergreen: #063730;
+            --charcoal-blue: #2C4145;
+            --taupe-grey: #524B5A;
+            --dusty-lavender: #78556F;
+            --rosewood: #9E5E83;
+            --petal-pink: #C46898;
+            --sweet-peony: #EA72AD;
+            --bg: #050E0C;
+            --text: #F2E8EE;
+            --text-dim: #B8A0B0;
+            --glass: rgba(82, 75, 90, 0.12);
+            --glass-border: rgba(234, 114, 173, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background: #f8fafc;
+            line-height: 1.7;
+        }
+
+        a { color: #6366f1; text-decoration: none; }
+        a:hover { color: #000000; }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            /* border-bottom: 1px solid #e2e8f0; */
+            padding: 1.5rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1e293b;
+        }
+
+        nav ul { list-style: none; display: flex; gap: 1.5rem; }
+        nav a { color: #000000; font-size: 1.05rem; font-weight: 500; }
+        nav a:hover { color: #ffffff; }
+
+        /* Hero */
+        .hero {
+            padding: 8rem 2rem 7rem;
+            background: linear-gradient(135deg, var(--evergreen) 0%, var(--charcoal-blue) 18%, var(--taupe-grey) 36%, var(--dusty-lavender) 52%, var(--rosewood) 68%, var(--petal-pink) 84%, var(--sweet-peony) 100%);
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; width: 100%; height: 80px;
+            background: #f8fafc;
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .avatar-placeholder {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: 3px solid rgba(255,255,255,0.5);
+            margin: 0 auto 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.3rem; }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .location {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-btn {
+            padding: 0.55rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+
+        .hero-btn-white {
+            background: #fff;
+            color: #6366f1;
+        }
+
+        .hero-btn-glass {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        section { margin-bottom: 3rem; }
+
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Timeline card */
+        .timeline-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border-left: 4px solid #667eea;
+            transition: box-shadow 0.3s;
+        }
+
+        .timeline-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+        .timeline-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
+        .timeline-top h3 { font-size: 1rem; font-weight: 600; color: #1e293b; }
+        .timeline-top .date { font-size: 0.82rem; color: #6366f1; font-weight: 500; }
+        .timeline-card .org { font-size: 0.9rem; color: #64748b; margin-bottom: 0.4rem; }
+
+        .timeline-card ul { padding-left: 1.2rem; }
+        .timeline-card li { font-size: 0.9rem; color: #64748b; margin-bottom: 0.3rem; }
+
+        /* Project cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 1rem;
+        }
+
+        .project-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, #667eea, #f093fb);
+        }
+
+        .project-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+
+        .project-card h3 { font-size: 1rem; font-weight: 600; color: #1e293b; margin-bottom: 0.5rem; }
+        .project-card ul { padding-left: 1.2rem; }
+        .project-card li { font-size: 0.88rem; color: #64748b; margin-bottom: 0.3rem; }
+
+        .project-card .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #eef2ff, #faf5ff);
+            color: #6366f1;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        /* Skills */
+        .skills-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-pill {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #475569;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .skill-pill:hover {
+            background: #6366f1;
+            color: #fff;
+            border-color: #6366f1;
+        }
+
+        /* Publication */
+        .pub-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+
+        .pub-card .title { font-weight: 600; font-size: 0.95rem; color: #1e293b; line-height: 1.5; }
+        .pub-card .authors { font-size: 0.85rem; color: #64748b; margin: 0.4rem 0; }
+        .pub-card .doi { font-size: 0.83rem; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.82rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            nav ul { gap: 0.7rem; font-size: 0.82rem; }
+            .timeline-top { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"></div>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<header class="hero">
+    <div class="avatar-placeholder">FH</div>
+    <h1>Farid Hosseini</h1>
+    <p class="subtitle">Machine Learning Engineer & Data Analyst</p>
+    <p class="location">Bucharest, Romania</p>
+    <div class="hero-btns">
+        <a href="mailto:faridhosseini74@gmail.com" class="hero-btn hero-btn-white">Contact Me</a>
+        <a href="https://github.com/faridhosseini74" target="_blank" class="hero-btn hero-btn-glass">GitHub</a>
+        <a href="https://linkedin.com/in/farid-hosseini-7a3a5819b" target="_blank" class="hero-btn hero-btn-glass">LinkedIn</a>
+    </div>
+</header>
+
+<main class="container">
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p style="color: #64748b; margin-top: 0.8rem;">Machine Learning Engineer and Data Analyst with strong expertise in Python, SQL, and cloud technologies (AWS, Azure, GCP). Experienced in developing and deploying machine learning models, performing data preprocessing, statistical analysis, and building automated dashboards for business intelligence. Skilled in deep learning, NLP, and generative AI using PyTorch and TensorFlow.</p>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="timeline-card" style="margin-top: 0.8rem;">
+            <div class="timeline-top">
+                <h3>MSc. Artificial Intelligence</h3>
+                <span class="date">Oct 2023 – Sep 2025</span>
+            </div>
+            <div class="org">University Politehnica of Bucharest</div>
+            <ul>
+                <li>GPA: 8.01/10.0</li>
+                <li><strong>Thesis:</strong> Generalization of Learning from Tabular Data in the Medical Domain — Transformer-based glucose prediction across heterogeneous medical datasets.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="timeline-card" style="margin-top: 0.8rem;">
+            <div class="timeline-top">
+                <h3>Data Science Engineer</h3>
+                <span class="date">March 2024 – Present</span>
+            </div>
+            <div class="org">Olimp Company – Ilfov</div>
+            <ul>
+                <li>Analyzed big data sales datasets to identify performance trends, resulting in 7% revenue optimization</li>
+                <li>Created automated data visualization dashboards using Python and SQL, reducing reporting time by 20%</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid" style="margin-top: 0.8rem;">
+            <div class="project-card">
+                <h3>Transformer-Based Model for Medical Tabular Data</h3>
+                <ul>
+                    <li>Training on datasets with partially overlapping features</li>
+                    <li>Transfer learning across multiple medical datasets</li>
+                </ul>
+                <div class="tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">SHAP</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>WhatsApp Customer Service AI Bot</h3>
+                <ul>
+                    <li>Automated customer service with OpenRouter API</li>
+                    <li>Shopify integration for real-time order handling</li>
+                </ul>
+                <div class="tech">
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">WhatsApp API</span>
+                    <span class="tech-tag">OpenRouter</span>
+                    <span class="tech-tag">Shopify</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <h2>Publications</h2>
+        <div class="pub-card" style="margin-top: 0.8rem;">
+            <p class="title">Decoding disparities: evaluating automatic speech recognition system performance in transcribing Black and White patient verbal communication with nurses in home healthcare</p>
+            <p class="authors">Maryan Zolnoori, Sasha Vergez, Zidu Xu, Elyas Esmaelli, Ali Zolnour, Krystal Anne Briggs, Jibya Kim Scroggins, <strong>Seyed Farid Hosseini Ebrahinabad</strong>, James M Noble, et al.</p>
+            <p class="doi"><a href="https://doi.org/10.1093/jamiaopen/ooae130" target="_blank">doi: 10.1093/jamiaopen/ooae130</a> — December 2024</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-wrap" style="margin-top: 0.8rem;">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">PyTorch</span>
+            <span class="skill-pill">TensorFlow</span>
+            <span class="skill-pill">Deep Learning</span>
+            <span class="skill-pill">NLP</span>
+            <span class="skill-pill">Generative AI</span>
+            <span class="skill-pill">AI Agents</span>
+            <span class="skill-pill">LLM Fine-Tuning</span>
+            <span class="skill-pill">RAG</span>
+            <span class="skill-pill">Pandas</span>
+            <span class="skill-pill">NumPy</span>
+            <span class="skill-pill">PySpark</span>
+            <span class="skill-pill">scikit-learn</span>
+            <span class="skill-pill">AWS</span>
+            <span class="skill-pill">GCP</span>
+            <span class="skill-pill">Azure</span>
+            <span class="skill-pill">Databricks</span>
+            <span class="skill-pill">Django</span>
+            <span class="skill-pill">FastAPI</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">Kubernetes</span>
+            <span class="skill-pill">Git</span>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <p style="color: #64748b; margin-top: 0.8rem;">Feel free to reach out via <a href="mailto:faridhosseini74@gmail.com">email</a> or connect with me on <a href="https://linkedin.com/in/farid-hosseini-7a3a5819b" target="_blank">LinkedIn</a>.</p>
+    </section>
+
+</main>
+
+<footer>
+    &copy; 2025 Farid Hosseini. All rights reserved.
+</footer>
+
+</body>
+</html>
